@@ -1,0 +1,24 @@
+management:
+
+  endpoints:
+    web:
+      exposure:
+        include: health
+        
+  endpoint:
+    health:
+      show-details: always
+
+
+
+resilience4j: 
+  circuitbreaker:
+    instances:
+      m1FallBack:
+        register-health-indicator: true
+        event-consumer-buffer-size: 0
+        failure-rate-threshold: 10
+        minimum-number-of-calls: 5
+        wait-duration-in-open-state: 1s
+        permitted-number-of-calls-in-half-open-state: 3 
+        
